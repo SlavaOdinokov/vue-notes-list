@@ -2,35 +2,41 @@
   <div class="home">
     <div class="page-title">
       <h3>Мои заметки</h3>
-
-      <button class="btn waves-effect waves-light btn-small">
-        <i class="material-icons">refresh</i>
-      </button>
     </div>
 
-    <div class="row">
-      <div class="col s12 m10">
-        <div class="card blue-grey darken-2">
-          <div class="card-content white-text">
-            <p>15.01.2020г.</p>
-            <span class="card-title">Название заметки</span>
-            <p>
-              Описание заметки. I am a very simple card. I am good at containing
-              small bits of information. I am convenient because I require
-              little markup to use effectively.
-            </p>
-          </div>
-          <div class="card-action white-text">
-            <span>С момента создания заметки прошло: 5ч</span>
-          </div>
-        </div>
-      </div>
+    <Loader v-if="loading" />
+
+    <p class="center" v-else-if="!records.length">Заметок пока нет</p>
+
+    <div v-else class="row">
+      <Notes :records="records" />
     </div>
   </div>
 </template>
 
 <script>
+import Notes from "@/components/Notes";
+import timeConversion from "@/utils/timeConversion";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: { Notes },
+  data: () => ({
+    loading: true,
+    records: []
+  }),
+  async mounted() {
+    const records = await this.$store.dispatch("fetchRecords");
+    records.reverse();
+
+    this.records = records.map(record => {
+      return {
+        ...record,
+        fromTheMoment: timeConversion(Date.now() - record.date)
+      };
+    });
+
+    this.loading = false;
+  }
 };
 </script>

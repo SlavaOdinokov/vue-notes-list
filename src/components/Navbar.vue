@@ -8,19 +8,29 @@
         <span class="black-text">{{ date | date("datetime") }}</span>
       </div>
 
-      <a href="#" class="black-text exit hoverable" @click.prevent="logout">
-        <i class="material-icons">assignment_return</i>Выйти
-      </a>
+      <div class="black-text right-wrapper">
+        <span class="user-name">{{ name }}</span>
+        <a href="#" class="black-text exit hoverable" @click.prevent="logout">
+          <i class="material-icons">assignment_return</i>
+          <span>Выйти</span>
+        </a>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
 export default {
+  name: "Navbar",
   data: () => ({
     date: new Date(),
     interval: null
   }),
+  computed: {
+    name() {
+      return this.$store.getters.info.name;
+    }
+  },
   methods: {
     async logout() {
       await this.$store.dispatch("logout");
@@ -39,11 +49,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.right-wrapper {
+  display: flex;
+  font-weight: 500;
+}
+.user-name {
+  margin-right: 20px;
+}
 .exit {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
   width: 100px;
-  font-weight: 600;
 }
 </style>

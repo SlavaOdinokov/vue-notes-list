@@ -19,7 +19,7 @@ export default {
   data: () => ({
     links: [
       { title: "Мои заметки", to: "/", exact: true },
-      { title: "Новая запись", to: "/record" }
+      { title: "Новая заметка", to: "/record" }
     ]
   })
 }
