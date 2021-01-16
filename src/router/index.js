@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Firebase from "firebase/app";
 
 Vue.use(VueRouter);
 
@@ -7,7 +8,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Home.vue")
   },
   {
@@ -25,7 +26,7 @@ const routes = [
   {
     path: "/record",
     name: "notes",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Record.vue")
   }
 ];
@@ -34,6 +35,17 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  const currentUser = Firebase.auth().currentUser;
+  const requireAuth = to.matched.some(record => record.meta.auth);
+
+  if (requireAuth && !currentUser) {
+    next("/login?message=login");
+  } else {
+    next();
+  }
 });
 
 export default router;

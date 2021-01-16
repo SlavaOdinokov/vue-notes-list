@@ -5,7 +5,7 @@
         <a href="#" @click.prevent="$emit('clickBtnNav')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{ date | date("datetime") }}</span>
+        <span class="black-text">{{ date }}</span>
       </div>
 
       <div class="black-text right-wrapper">
@@ -20,10 +20,12 @@
 </template>
 
 <script>
+import dateFilter from "@/utils/dateFilter";
+
 export default {
   name: "Navbar",
   data: () => ({
-    date: new Date(),
+    date: dateFilter(new Date(), "datetime"),
     interval: null
   }),
   computed: {
@@ -39,7 +41,7 @@ export default {
   },
   mounted() {
     this.interval = setInterval(() => {
-      this.date = new Date();
+      this.date = dateFilter(new Date(), "datetime");
     }, 60000);
   },
   beforeDestroy() {

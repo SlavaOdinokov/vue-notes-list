@@ -48,6 +48,7 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
+import dateFilter from "@/utils/dateFilter";
 
 export default {
   name: "Record",
@@ -69,7 +70,8 @@ export default {
       const formData = {
         title: this.title,
         description: this.description,
-        date: +new Date()
+        date: Date.now(),
+        dateOfCreation: dateFilter(new Date(), "datetime")
       };
 
       try {
