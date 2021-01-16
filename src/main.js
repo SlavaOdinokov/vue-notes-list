@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuelidate from "vuelidate";
+import VueMeta from "vue-meta";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -14,6 +15,7 @@ import "firebase/database";
 Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
+Vue.use(VueMeta);
 Vue.use(Notifications);
 Vue.component("Loader", Loader);
 

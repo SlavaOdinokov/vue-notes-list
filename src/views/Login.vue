@@ -77,6 +77,9 @@ import messages from "@/utils/messages";
 
 export default {
   name: "Login",
+  metaInfo: {
+    title: `${process.env.VUE_APP_TITLE} | Войти`
+  },
   data: () => ({
     email: "",
     password: ""

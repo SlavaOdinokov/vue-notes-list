@@ -20,6 +20,9 @@ import timeConversion from "@/utils/timeConversion";
 
 export default {
   name: "Home",
+  metaInfo: {
+    title: `${process.env.VUE_APP_TITLE} | Главная`
+  },
   components: { Notes },
   data: () => ({
     loading: true,

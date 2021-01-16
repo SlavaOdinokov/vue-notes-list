@@ -52,6 +52,9 @@ import dateFilter from "@/utils/dateFilter";
 
 export default {
   name: "Record",
+  metaInfo: {
+    title: `${process.env.VUE_APP_TITLE} | Новая заметка`
+  },
   data: () => ({
     title: "",
     description: ""

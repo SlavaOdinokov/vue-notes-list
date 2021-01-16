@@ -100,6 +100,9 @@ import { email, required, minLength } from "vuelidate/lib/validators";
 
 export default {
   name: "Register",
+  metaInfo: {
+    title: `${process.env.VUE_APP_TITLE} | Регистрация`
+  },
   data: () => ({
     email: "",
     password: "",
