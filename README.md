@@ -1,24 +1,16 @@
-# vue-task-list
+## vue-notes-list
+SPA-приложение по добавлению и сохранению заметок.  
+В приложении есть страницы авторизации, регистрации, список заметок, добавление заметки.
 
-## Project setup
-```
-npm install
-```
+**Frontend:** Vue/Vuex/Vue-Router + materializecss;  
+**Backend:** Firebase.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Тестировать
+https://vue-notes-list.web.app/  
+Логин: root@mail.ru  
+Пароль: 123456789  
+Либо создать нового пользователя.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Для локального запуска:
+`npm i`  
+`npm run serve`
